@@ -2,13 +2,18 @@
   "name": "hello-world-electron",
   "private": true,
   "version": "0.0.0",
+  "description": "A hello world Electron application",
+  "author": "Your Name <your.email@example.com>",
   "type": "module",
-  "main": "src/electron/main",
+  "main": "src/electron/main.js",
   "scripts": {
     "dev:react": "vite",
     "dev:electron": "electron .",
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "clean": "rm -rf dist",
+    "package": "npm run clean && npm run build && electron-builder --mac",
+    "package:universal": "npm run clean && npm run build && electron-builder --mac --universal",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -17,7 +22,7 @@
     "productName": "HelloWorldElectronApp",
     "files": [
       "dist-react/**/*",
-      "dist-electron/**/*",
+      "src/**/*",
       "node_modules/**/*",
       "package.json"
     ],
@@ -25,8 +30,20 @@
       "buildResources": "build"
     },
     "mac": {
-      "target": "dmg"
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "category": "public.app-category.utilities",
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "gatekeeperAssess": false,
+      "identity": "James Shisia (xxxxxxxxx)"
     },
+    "afterSign": "build/notarize.cjs",
     "win": {
       "target": "nsis"
     },
@@ -43,8 +60,10 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
+    "dotenv": "^16.5.0",
     "electron": "^36.2.0",
     "electron-builder": "^26.0.12",
+    "electron-notarize": "^1.2.2",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
