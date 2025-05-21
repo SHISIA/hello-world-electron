@@ -1,0 +1,28 @@
+{
+  "appId": "com.example.helloworld",
+  "productName": "HelloWorldElectronApp",
+  "icon": "./appIcon.png",
+  "files": [
+    "dist-react/**/*",
+    "src/electron/**/*",
+    "node_modules/**/*",
+    "package.json"
+  ],
+  "extraMetadata": {
+    "main": "src/electron/main.js",
+    "type": "module"
+  },
+  "directories": {
+    "buildResources": "build"
+  },
+  "mac": {
+    "target": "dmg"
+  },
+  "win": {
+    "target": ["portable","msi"]
+  },
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility"
+  }
+}
