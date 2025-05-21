@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import type {Plugin} from 'vite'
-
 // Custom plugin to modify the HTML template
 const htmlPlugin = (): Plugin => {
   return {

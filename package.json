@@ -9,7 +9,7 @@
   "scripts": {
     "dev:react": "vite",
     "dev:electron": "cross-env NODE_ENV=development electron .",
-    "dev": "concurrently --kill-others \"npm run dev:react\" \"wait-on http://localhost:5123 && npm run dev:electron\"",
+    "dev": "concurrently --kill-others \"npm run dev:react\" \"wait-on http://localhost:5173 && npm run dev:electron\"",
     "build": "tsc -b && vite build",
     "build:electron": "electron-builder",
     "lint": "eslint .",
