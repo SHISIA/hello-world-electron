@@ -120,22 +120,22 @@ const FolderSection: React.FC = () => {
                             digital files and information into four categories:"</p>
                         <ul className="list-decimal list-inside space-y-2 pt-2">
                             <li className="flex items-start justify-start">
-                                <p className="font-medium">Projects</p>
+                                <p className="font-medium text-slate-700">✅Projects</p>
                                 <p className="italic text-sm text-gray-500">&nbsp;&nbsp;:active tasks or goals you're
                                     currently working on.</p>
                             </li>
                             <li className="flex items-start  justify-start">
-                                <p className="font-medium">Areas</p>
+                                <p className="font-medium text-slate-700">✅Areas</p>
                                 <p className="italic text-sm text-gray-500">&nbsp;&nbsp;:ongoing responsibilities or
                                     interests, like Health or Finances.</p>
                             </li>
                             <li className="flex items-start justify-start">
-                                <p className="font-medium">Projects</p>
+                                <p className="font-medium text-slate-700">✅Resources</p>
                                 <p className="italic text-sm text-gray-500">&nbsp;&nbsp;:reference materials or content
                                     you might need in future, like articles or templates.</p>
                             </li>
                             <li className="flex items-start justify-start">
-                                <p className="font-medium">Projects</p>
+                                <p className="font-medium text-slate-700">✅Archives</p>
                                 <p className="italic text-sm text-gray-500">&nbsp;&nbsp;:inactive items from Projects,
                                     Areas, or Resources that you want to keep but don't need frequently.</p>
                             </li>
