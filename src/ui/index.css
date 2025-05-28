@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Plugins */
+@plugin "@tailwindcss/forms";
+/* App.css */
+.rdp {
+    background-color: white !important;
+    color: #1f2937 !important; /* text-gray-800 */
+}
+
+.rdp-day_selected {
+    background-color: RED !important; /* blue-500 */
+    color: white !important;
+}

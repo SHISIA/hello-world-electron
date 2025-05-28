@@ -14,8 +14,15 @@ import Flexible from "../assets/folderIcons/flexible.png";
 import Clear from "../assets/folderIcons/clearDistinctionIcon.png";
 import Focus from "../assets/folderIcons/filter_tilt_shift.png";
 import Reduced from "../assets/folderIcons/reduce_capacity.png";
+import {useNavigate} from "react-router-dom";
 
 const FolderSection: React.FC = () => {
+
+    const  navigate = useNavigate();
+
+    const handlePARADashboardClick = () => {
+        navigate("/main");
+    }
     return (
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 my-6">
             <div className={"flex flex-row items-center justify-center "}>
@@ -172,7 +179,8 @@ const FolderSection: React.FC = () => {
                 <button className="bg-red-700 text-white px-6 py-2 h-11  hover:bg-transparent hover:border-green-500 hover:border-2 hover:text-slate-700 transition rounded-full w-96">
                     Select Single Root Folder
                 </button>
-                <button className="bg-blue-700 text-white px-6 py-2 h-11 hover:bg-transparent hover:border-green-500 hover:border-2 hover:text-slate-700 transition rounded-full w-96">
+                <button className="bg-blue-700 text-white px-6 py-2 h-11 hover:bg-transparent hover:border-green-500 hover:border-2 hover:text-slate-700 transition rounded-full w-96"
+                 onClick={handlePARADashboardClick}>
                     Select PARA Method
                 </button>
             </div>

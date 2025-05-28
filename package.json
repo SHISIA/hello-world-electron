@@ -1,9 +1,9 @@
 {
-  "name": "hello-world-electron",
+  "name": "ZenClutter",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A simple Hello World Electron application",
-  "author": "Your Name <your.email@example.com>",
+  "author": "SHISIA",
   "type": "module",
   "main": "dist-electron/main",
   "scripts": {
@@ -21,12 +21,21 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@heroicons/react": "^2.2.0",
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
+    "@mui/x-date-pickers": "^8.4.0",
+    "@mui/x-tree-view": "^8.4.0",
+    "dayjs": "^1.11.13",
     "electronmon": "^2.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.1"
+    "react-router-dom": "^7.6.1",
+    "react-tailwindcss-datepicker": "^2.0.0",
+    "reactflow": "^11.11.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
