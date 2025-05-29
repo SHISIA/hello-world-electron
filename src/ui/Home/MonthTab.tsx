@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import dayjs from "dayjs";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCaretDown, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 const DashboardSection: React.FC = () => {
 ;
     const [value, setValue] = useState({
@@ -12,16 +12,7 @@ const DashboardSection: React.FC = () => {
         endDate: dayjs().format("YYYY-MM-DD"),
     });
 
-    // Format the input text
-    const formatInputText = () => {
-        const selectedDate = dayjs(value?.startDate);
-        const today = dayjs().startOf("day");
 
-        const isToday = selectedDate.isSame(today, "day");
-        const formatted = selectedDate.format("MMMM YYYY");
-
-        return `${isToday ? "Today, " : ""}${formatted}`;
-    };
     // @ts-ignore
     return (
         // Section with padding and background color
