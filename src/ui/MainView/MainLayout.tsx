@@ -6,8 +6,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAdd, faCirclePlus, faSliders} from "@fortawesome/free-solid-svg-icons";
 import SpeechBubble from "./SpeechBubble.tsx";
 import Home from "../Home/Home.tsx";
+import ContactsTab from "../Contacts/ContactsTab.tsx";
 
-type View = "File Manager" | "Home" | "Settings" | "Help";
+type View = "File Manager" | "Home" | "Contacts" | "Help";
 
 const MenuLayout: React.FC = () => {
     const [currentView, setCurrentView] = useState<View>("Home");
@@ -18,8 +19,8 @@ const MenuLayout: React.FC = () => {
                 return <Dashboard/>;
             case "Home":
                 return <Home/>;
-            case "Settings":
-                return <div className="text-2xl font-bold">Adjust Settings</div>;
+            case "Contacts":
+                return <ContactsTab/>;
             case "Help":
                 return <div className="text-2xl font-bold">Need Help?</div>;
             default:
@@ -27,7 +28,7 @@ const MenuLayout: React.FC = () => {
         }
     };
 
-    const views: View[] = [ "File Manager" , "Home" , "Settings", "Help"];
+    const views: View[] = [ "File Manager" , "Home" , "Contacts", "Help"];
 
     return (
         <div className="flex h-screen bg-white">
