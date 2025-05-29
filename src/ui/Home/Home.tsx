@@ -1,14 +1,51 @@
-import React, { type FC, type JSX, useState } from "react";
-import { WeekView } from "./Weekview.tsx";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarWeek } from "@fortawesome/free-solid-svg-icons/faCalendarWeek";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons/faCalendarDays";
+import React, {type FC, type JSX, useState} from "react";
+import {WeekView} from "./Weekview.tsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCalendarWeek} from "@fortawesome/free-solid-svg-icons/faCalendarWeek";
+import {faCalendarDays} from "@fortawesome/free-solid-svg-icons/faCalendarDays";
 import MonthTab from "./MonthTab.tsx";
+import dayjs from "dayjs";
+import {DateCalendar, DayCalendarSkeleton, LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {Box, Grid, Typography} from "@mui/material";
 
-// Placeholder components for other views
-const MonthView = () => <div>Month View</div>;
+const initialValue = dayjs('2022-04-17');
 const MonthListView = () => <div><MonthTab /></div>;
-const YearView = () => <div>Year View</div>;
+const months = Array.from({ length: 12 }, (_, i) => dayjs().month(i));
+const YearView = () => <div><LocalizationProvider dateAdapter={AdapterDayjs}>
+    <Box p={2}>
+        <Typography variant="h4" gutterBottom>
+            Year View – {dayjs().year()}
+        </Typography>
+        <Grid container spacing={2}>
+            {months.map((month, index) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                    <Typography variant="h6" align="center">
+                        {month.format("MMMM")}
+                    </Typography>
+                    <DateCalendar
+                        defaultValue={month.startOf("month")}
+                        views={["day"]}
+                        readOnly
+                        sx={{
+                            "& .MuiPickersDay-root": {
+                                aspectRatio: "1 / 1",
+                                borderRadius: "50%",
+                                "&:hover": {
+                                    backgroundColor: "#e3f2fd",
+                                },
+                                "&.Mui-selected": {
+                                    backgroundColor: "#1976d2",
+                                    color: "#fff",
+                                },
+                            },
+                        }}
+                    />
+                </Grid>
+            ))}
+        </Grid>
+    </Box>
+</LocalizationProvider></div>;
 
 const App: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -76,7 +113,49 @@ const App: React.FC = () => {
                     <WeekView startDate={startOfWeek} selectedDate={selectedDate} darkMode={false} />
                 );
             case "Month":
-                return <MonthView />;
+                return <div className="w-full bg-slate-400"><LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateCalendar
+                        defaultValue={initialValue}
+                        renderLoading={() => <DayCalendarSkeleton />}
+                        sx={{
+                            width: '100%',
+                            backgroundColor: 'white',
+                            '& .MuiDayCalendar-header': {
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(7, 1fr)', // 7 equal columns
+                                justifyItems: 'center',
+                            },
+                            '& .MuiDayCalendar-weekContainer': {
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(7, 1fr)', // 7 days per week
+                            },
+                            '& .MuiPickersDay-root': {
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                margin: 0,
+                                aspectRatio: '1 / 1',       // make it square
+                                width: '100%',              // take full width of cell
+                                maxWidth: '100%',           // no restriction
+                                padding: 0,                 // remove extra padding
+                                '&.Mui-selected': {
+                                    borderRadius: '4%',
+                                    backgroundColor: '#BBF7D0',
+                                    border: '1.5px solid #BBF7D0',
+                                    color: 'black',
+                                },
+                                '&:hover': {
+                                    borderRadius: '4%',
+                                    backgroundColor: 'transparent',
+                                    border: '1px solid gray',
+
+                                },
+                            },
+                        }}
+                    />
+
+
+                </LocalizationProvider></div>;
             case "Month List":
                 return <MonthListView />;
             case "Year":
