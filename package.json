@@ -5,13 +5,13 @@
   "description": "A simple Hello World Electron application",
   "author": "SHISIA",
   "type": "module",
-  "main": "dist-electron/main",
+  "main": "dist-electron/main.js",
   "scripts": {
     "dev:react": "vite",
     "dev:electron": "cross-env NODE_ENV=development electron .",
     "dev": "npm-run-all --parallel dev:react dev:electron",
     "build": "tsc -b && vite build",
-    "build:electron": "electron-builder",
+    "build:electron": "npm run transpile:electron && npm run build && electron-builder --mac --universal",
     "lint": "eslint .",
     "preview": "vite preview",
     "transpile:electron": "tsc --project src/electron/tsconfig.json",
@@ -38,6 +38,7 @@
     "reactflow": "^11.11.4"
   },
   "devDependencies": {
+    "@electron/notarize": "^2.5.0",
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
@@ -58,5 +59,36 @@
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5",
     "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.zenclutter.app",
+    "productName": "ZenClutter",
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "type": "distribution",
+      "category": "public.app-category.productivity",
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.plist",
+      "gatekeeperAssess": false,
+      "sign": true
+    },
+    "afterSign": "build/notarize.cjs",
+    "files": [
+      "dist-react/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }

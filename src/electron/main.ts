@@ -1,4 +1,4 @@
-import {app, BrowserWindow, Menu} from 'electron';
+import {app, BrowserWindow, Menu,Notification} from 'electron';
 import path from 'path';
 import {isDev} from "./util.js";
 
@@ -22,6 +22,14 @@ const createWindow= () =>{
     // Set minimum size constraint - ensure it's not larger than our desired width
     win.setMinimumSize(800, 600);
     console.log(`Set minimum size to: 800x600`);
+
+    // Show system notification after window is ready
+    win.webContents.on('did-finish-load', () => {
+        new Notification({
+            title: 'ZenClutter',
+            body: 'Welcome back! Your calendar is synced.',
+        }).show();
+    });
 
     // Center the window on the screen
     win.center();
