@@ -1,11 +1,34 @@
-# React + TypeScript + Vite
+# Hello World Electron App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a minimal Electron application built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React + TypeScript + Vite for the frontend
+- Electron for the desktop application
+- macOS notarization support
+
+## macOS Notarization
+
+For distributing macOS applications, Apple requires apps to be notarized. This project includes support for notarization, but requires Apple Developer credentials.
+
+### Setting up Notarization
+
+1. Create a `.env` file in the project root (or edit the existing one)
+2. Add the following environment variables:
+   ```
+   APPLE_ID=your.apple.id@example.com
+   APPLE_APP_SPECIFIC_PASSWORD=your-app-specific-password
+   APPLE_TEAM_ID=your-team-id
+   ```
+
+If these credentials are not provided, the notarization step will be skipped during the build process.
+
+### Obtaining the Required Credentials
+
+- **Apple ID**: Your Apple Developer account email
+- **App-Specific Password**: Generate from [Apple ID Account Page](https://appleid.apple.com/account/manage)
+- **Team ID**: Find in your [Apple Developer Account](https://developer.apple.com/account) under Membership Details
 
 ## Expanding the ESLint configuration
 

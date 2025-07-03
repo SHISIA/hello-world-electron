@@ -1,15 +1,21 @@
-// build/notarize.cjs
-require('dotenv').config();
+require('dotenv').config(); // Load environment variables
 
-exports.default = async function notarize(context) {
-    const { electronPlatformName, appOutDir } = context;
+const { notarize } = require('electron-notarize');
 
+exports.default = async function notarizing(context) {
+    const { electronPlatformName, appOutDir, packager } = context;
+
+    // Only notarize on macOS
     if (electronPlatformName !== 'darwin') return;
 
-    const appName = context.packager.appInfo.productFilename;
+    const appName = packager.appInfo.productFilename;
 
-    return require('electron-notarize').notarize({
+    console.log(`Notarizing ${appName}.app...`);
+
+    // Use the newer notarytool method
+    return await notarize({
         tool: 'notarytool',
+        appBundleId: 'com.tester.app',
         appPath: `${appOutDir}/${appName}.app`,
         appleId: process.env.APPLE_ID,
         appleIdPassword: process.env.APPLE_APP_SPECIFIC_PASSWORD,

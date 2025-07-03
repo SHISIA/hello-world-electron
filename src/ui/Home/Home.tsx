@@ -19,7 +19,7 @@ const YearView = () => <div><LocalizationProvider dateAdapter={AdapterDayjs}>
         </Typography>
         <Grid container spacing={2}>
             {months.map((month, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                <Grid className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"  key={index}>
                     <Typography variant="h6" align="center">
                         {month.format("MMMM")}
                     </Typography>
@@ -48,7 +48,8 @@ const YearView = () => <div><LocalizationProvider dateAdapter={AdapterDayjs}>
 </LocalizationProvider></div>;
 
 const App: React.FC = () => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    // const [selectedDate, setSelectedDate] = useState(new Date());
+    const selectedDate = new Date(); // if it's not going to change
     const [activeTab, setActiveTab] = useState("Week"); // Track which tab is active
     const startOfWeek = new Date(); // For WeekView
 

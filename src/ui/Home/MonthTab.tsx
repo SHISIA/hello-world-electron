@@ -1,19 +1,22 @@
 // DashboardSection.tsx
 
 import React, {useState} from "react";
-import Datepicker from "react-tailwindcss-datepicker";
-import dayjs from "dayjs";
+import Datepicker, { type DateValueType } from "react-tailwindcss-datepicker";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 const DashboardSection: React.FC = () => {
-;
-    const [value, setValue] = useState({
-        startDate: dayjs().format("YYYY-MM-DD"),
-        endDate: dayjs().format("YYYY-MM-DD"),
+    // ✅ Declare proper type
+    const [value, setValue] = useState<DateValueType>({
+        startDate: new Date(),
+        endDate: new Date(),
     });
 
+    // ✅ Provide a valid change handler
+    const handleValueChange = (newValue: DateValueType) => {
+        setValue(newValue);
+    };
 
-    // @ts-ignore
+
     return (
         // Section with padding and background color
         <section className="">
@@ -23,17 +26,15 @@ const DashboardSection: React.FC = () => {
 
                         <Datepicker
                             value={value}
-                            onChange={setValue}
+                            onChange={handleValueChange}
                             useRange={false}
                             showShortcuts={false}
                             asSingle={true}
                             primaryColor="blue"
-                            clearIcon={null}
+                            // clearIcon={null}
                             inputClassName="bg-transparent border border-transparent rounded-lg w-fit h-12 px-2  text-transparent cursor-pointer
-                            focus:ring-2 focus:ring-transparent focus:outline-none text-sm placeholder:text-transparent placeholder:italic "
-                            inputProps={{
-                                readOnly: true,
-                            }}
+                            focus:ring-2 focus:ring-transparent focus:outline-none text-sm placeholder:text-transparent placeholder:italic pointer-events-none select-none"
+
                         />
 
                         {/* h6 acts as the open trigger */}
